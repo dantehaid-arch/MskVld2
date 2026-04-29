@@ -3,25 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Москва-Владивосток — ресторан русской дальневосточной кухни. Russian New Wave." />
   <title>Москва-Владивосток | Russian New Wave</title>
-  
-  <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
-    /* ============================================
-       CSS VARIABLES & RESET
-       ============================================ */
     :root {
-      /* Brand Colors from Guidebook */
       --cinnabar: #C52609;
       --cinnabar-light: #EC4C30;
       --deep-red: #BC1D00;
@@ -33,791 +19,92 @@
       --cream: #FAF8F5;
       --white: #FFFFFF;
       
-      /* Typography */
       --font-heading: 'Playfair Display', serif;
       --font-body: 'Inter', sans-serif;
       --font-accent: 'Lora', serif;
       
-      /* Spacing */
-      --container: 1200px;
-      --spacing-xs: 0.5rem;
-      --spacing-sm: 1rem;
-      --spacing-md: 1.5rem;
-      --spacing-lg: 3rem;
-      --spacing-xl: 5rem;
-      
-      /* Effects */
       --radius: 12px;
-      --radius-sm: 8px;
-      --shadow-sm: 0 2px 8px rgba(0,41,50,0.06);
       --shadow: 0 4px 20px rgba(0,41,50,0.08);
       --shadow-lg: 0 12px 40px rgba(0,41,50,0.12);
-      --shadow-xl: 0 20px 60px rgba(0,41,50,0.15);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: var(--font-body);
       background: var(--cream);
       color: var(--dark);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
+    /* Section Navigation Buttons */
+    .section-nav {
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+      background: rgba(250,248,245,0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 0;
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: var(--transition);
-    }
-
-    /* ============================================
-       PRELOADER
-       ============================================ */
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    .preloader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .preloader__content {
-      text-align: center;
-    }
-
-    .preloader__logo {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      color: var(--cinnabar-light);
-      margin-bottom: 1rem;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    .preloader__bar {
-      width: 200px;
-      height: 3px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 3px;
-      overflow: hidden;
-      margin: 0 auto;
-    }
-
-    .preloader__progress {
-      width: 0%;
-      height: 100%;
-      background: var(--cinnabar-light);
-      transition: width 0.3s ease;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* ============================================
-       NAVIGATION
-       ============================================ */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(0,41,50,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      background: rgba(0,41,50,0.98);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .navbar__inner {
-      max-width: var(--container);
+    .section-nav__inner {
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .navbar__logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .navbar__logo-icon {
-      font-size: 1.5rem;
-    }
-
-    .navbar__links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .navbar__links a {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-      font-weight: 500;
-      position: relative;
-      padding: 8px 0;
-    }
-
-    .navbar__links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--cinnabar-light);
-      transition: width 0.3s ease;
-    }
-
-    .navbar__links a:hover {
-      color: var(--white);
-    }
-
-    .navbar__links a:hover::after {
-      width: 100%;
-    }
-
-    .navbar__actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .navbar__cart {
-      position: relative;
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 8px;
-      transition: var(--transition);
-    }
-
-    .navbar__cart:hover {
-      color: var(--cinnabar-light);
-      transform: scale(1.1);
-    }
-
-    .navbar__cart-count {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--cinnabar);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 600;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .burger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      z-index: 1001;
-    }
-
-    .burger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      transition: var(--transition);
-    }
-
-    .burger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .burger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* ============================================
-       HERO SECTION
-       ============================================ */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--dark);
-      overflow: hidden;
-    }
-
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    .hero__svg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.15;
-    }
-
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(0,41,50,0.3) 0%, var(--dark) 70%);
-      z-index: 2;
-    }
-
-    .hero__pattern-top,
-    .hero__pattern-bottom {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 120px;
-      z-index: 3;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-    }
-
-    .hero__pattern-top {
-      top: 0;
-      background: linear-gradient(to bottom, rgba(17,96,84,0.3), transparent);
-    }
-
-    .hero__pattern-bottom {
-      bottom: 0;
-      background: linear-gradient(to top, var(--cream), transparent);
-      height: 150px;
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      color: var(--white);
-      max-width: 900px;
-      padding: 40px 24px;
-    }
-
-    .hero__tagline {
-      color: var(--cinnabar-light);
-      letter-spacing: 0.25em;
-      font-weight: 500;
-      font-size: 0.85rem;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards 0.3s;
-    }
-
-    .hero__title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      line-height: 1;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards 0.5s;
-    }
-
-    .hero__subtitle {
-      font-family: var(--font-accent);
-      font-style: italic;
-      font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 40px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards 0.7s;
-    }
-
-    .hero__actions {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease forwards 0.9s;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ============================================
-       BUTTONS
-       ============================================ */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .section-nav__btn {
       padding: 14px 32px;
-      border: none;
-      border-radius: var(--radius-sm);
+      border: 2px solid var(--steel);
+      background: transparent;
+      color: var(--steel);
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 30px;
       cursor: pointer;
       transition: var(--transition);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn--primary {
-      background: var(--cinnabar);
-      color: var(--white);
-      box-shadow: 0 4px 16px rgba(197,38,9,0.3);
-    }
-
-    .btn--primary:hover {
-      background: var(--deep-red);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(197,38,9,0.4);
-    }
-
-    .btn--ghost {
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.3);
-      color: var(--white);
-    }
-
-    .btn--ghost:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: var(--white);
-    }
-
-    .btn--outline {
-      background: transparent;
-      border: 2px solid var(--steel);
-      color: var(--steel);
-    }
-
-    .btn--outline:hover {
-      background: var(--steel);
-      color: var(--white);
-    }
-
-    .btn--sm {
-      padding: 10px 20px;
-      font-size: 0.8rem;
-    }
-
-    .btn--lg {
-      padding: 16px 40px;
-      font-size: 1rem;
-    }
-
-    .btn--full {
-      width: 100%;
-    }
-
-    /* ============================================
-       SECTIONS
-       ============================================ */
-    .section {
-      padding: var(--spacing-xl) 0;
-    }
-
-    .section--dark {
-      background: var(--dark);
-      color: var(--white);
-    }
-
-    .section--gradient {
-      background: linear-gradient(135deg, var(--steel) 0%, var(--dark) 100%);
-    }
-
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--cinnabar);
-      margin-bottom: 16px;
-      background: rgba(197,38,9,0.08);
-      padding: 6px 20px;
-      border-radius: 20px;
-    }
-
-    .section-tag--light {
-      color: var(--cinnabar-light);
-      background: rgba(236,76,48,0.15);
-    }
-
-    .section-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3rem);
-      text-transform: uppercase;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .section-title--light {
-      color: var(--white);
-    }
-
-    .section-desc {
-      font-family: var(--font-accent);
-      font-style: italic;
-      color: var(--steel);
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-    }
-
-    .section-desc--light {
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* ============================================
-       ABOUT SECTION
-       ============================================ */
-    .about {
-      background: var(--cream);
-    }
-
-    .about__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about__visual {
-      position: relative;
-    }
-
-    .about__pattern-box {
-      border-radius: var(--radius);
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      box-shadow: var(--shadow-xl);
-      position: relative;
-    }
-
-    .about__pattern-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .about__pattern-box:hover .about__pattern-img {
-      transform: scale(1.05);
-    }
-
-    .about__badge {
-      position: absolute;
-      bottom: -20px;
-      left: 20px;
-      background: var(--white);
-      padding: 12px 20px;
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-lg);
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      animation: float 3s ease-in-out infinite;
+      gap: 10px;
     }
 
-    .about__badge--tiger {
-      left: auto;
-      right: 20px;
-      animation-delay: 1.5s;
+    .section-nav__btn i {
+      font-size: 1.1rem;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .about__badge-icon {
-      font-size: 1.5rem;
-    }
-
-    .about__text .section-tag {
-      text-align: left;
-    }
-
-    .about__text .section-title {
-      text-align: left;
-    }
-
-    .about__lead {
-      font-family: var(--font-accent);
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--steel);
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .about__text p {
-      margin-bottom: 16px;
-      color: #555;
-      line-height: 1.7;
-    }
-
-    .about__stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .stat {
-      text-align: center;
-      padding: 16px;
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .stat:hover {
-      transform: translateY(-4px);
+    .section-nav__btn:hover,
+    .section-nav__btn.active {
+      background: var(--steel);
+      color: var(--white);
+      border-color: var(--steel);
+      transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
 
-    .stat__number {
-      display: block;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: var(--cinnabar);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat__label {
-      font-size: 0.85rem;
-      color: var(--steel);
-      font-weight: 500;
-    }
-
-    /* ============================================
-       DIVIDER WITH PATTERN
-       ============================================ */
-    .divider {
-      height: 250px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .divider--sea img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .divider::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, var(--cream), transparent 15%, transparent 85%, var(--cream));
-    }
-
-    /* ============================================
-       MENU SECTION
-       ============================================ */
-    .menu-section {
-      background: var(--cream);
-    }
-
-    /* Search Bar */
-    .menu-search {
-      max-width: 500px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .menu-search input {
-      width: 100%;
-      padding: 14px 48px 14px 20px;
-      border: 2px solid rgba(0,0,0,0.08);
-      border-radius: 30px;
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      transition: var(--transition);
-      background: var(--white);
-    }
-
-    .menu-search input:focus {
-      outline: none;
+    .section-nav__btn.active {
+      background: var(--cinnabar);
       border-color: var(--cinnabar);
-      box-shadow: 0 0 0 4px rgba(197,38,9,0.1);
     }
 
-    .menu-search i {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--steel);
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 48px;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      padding: 12px 28px;
-      border: 2px solid var(--steel);
-      background: transparent;
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: var(--transition);
-      color: var(--steel);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tab-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--steel);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
-    }
-
-    .tab-btn.active,
-    .tab-btn:hover {
-      color: var(--white);
-      border-color: var(--steel);
-    }
-
-    .tab-btn.active::before,
-    .tab-btn:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .tab-btn span {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Menu Grid */
-    .menu-grid {
+    /* Menu Sections */
+    .menu-section {
       display: none;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
       animation: fadeIn 0.5s ease;
+      padding: 40px 0;
     }
 
-    .menu-grid.active {
-      display: grid;
+    .menu-section.active {
+      display: block;
     }
 
     @keyframes fadeIn {
@@ -825,283 +112,153 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Menu Card */
-    .menu-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+    /* Top Positions */
+    .top-positions {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--berlin) 100%);
+      padding: 60px 0;
+      margin-bottom: 60px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.04);
     }
 
-    .menu-card::before {
+    .top-positions::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--cinnabar), var(--cinnabar-light));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .menu-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .menu-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .menu-card--featured {
-      border: 2px solid var(--cinnabar);
-    }
-
-    .menu-card__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 12px;
-    }
-
-    .menu-card__title {
-      font-weight: 600;
-      font-size: 1.15rem;
-      line-height: 1.3;
-      color: var(--dark);
-    }
-
-    .menu-card__price {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--cinnabar);
-      white-space: nowrap;
-    }
-
-    .menu-card__desc {
-      font-family: var(--font-accent);
-      font-style: italic;
-      color: #777;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .menu-card__tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .menu-card__tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 4px 12px;
-      border-radius: 12px;
-      background: rgba(197,38,9,0.08);
-      color: var(--cinnabar);
-    }
-
-    .menu-card__tag--hit {
-      background: var(--cinnabar);
-      color: var(--white);
-    }
-
-    .menu-card__actions {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: var(--transition);
-    }
-
-    .menu-card:hover .menu-card__actions {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .menu-card__action {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--white);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      color: var(--steel);
-    }
-
-    .menu-card__action:hover {
-      background: var(--cinnabar);
-      color: var(--white);
-      transform: scale(1.1);
-    }
-
-    /* ============================================
-       COCKTAILS SECTION
-       ============================================ */
-    .cocktails-section {
-      position: relative;
-      padding: 100px 0;
-      background: var(--dark);
-      overflow: hidden;
-    }
-
-    .cocktails-section__bg {
-      position: absolute;
-      inset: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/pattern-taiga.jpg') center/cover;
       opacity: 0.1;
     }
 
-    .cocktails-section__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .cocktails-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .cocktail-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cocktail-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(197,38,9,0.1) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .cocktail-card:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-8px);
-      border-color: rgba(236,76,48,0.3);
-    }
-
-    .cocktail-card:hover::before {
-      opacity: 1;
-    }
-
-    .cocktail-card--featured {
-      border-color: var(--cinnabar);
-      background: rgba(197,38,9,0.1);
-    }
-
-    .cocktail-card__icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .cocktail-card__name {
+    .top-positions__title {
+      font-family: var(--font-heading);
       color: var(--white);
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
     }
 
-    .cocktail-card__desc {
-      color: rgba(255,255,255,0.6);
-      font-style: italic;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    .top-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
     }
 
-    .cocktail-card__price {
-      color: var(--cinnabar-light);
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.25rem;
+    .top-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
     }
 
-    .cocktail-card__badge {
+    .top-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .top-card__image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--alabaster), var(--steel));
+    }
+
+    .top-card__badge {
       position: absolute;
       top: 16px;
       right: 16px;
       background: var(--cinnabar);
-      color: var(--white);
-      font-size: 0.65rem;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
       font-weight: 700;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 12px;
       letter-spacing: 0.05em;
     }
 
-    /* ============================================
-       WINE SECTION
-       ============================================ */
-    .wine-section {
-      background: var(--cream);
+    .top-card__content {
+      padding: 24px;
+    }
+
+    .top-card__name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .top-card__desc {
+      font-family: var(--font-accent);
+      font-style: italic;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .top-card__price {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--cinnabar);
+    }
+
+    /* Wine Cards with Descriptions */
+    .wine-category {
+      margin-bottom: 48px;
+    }
+
+    .wine-category__title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--cinnabar);
+      display: inline-block;
     }
 
     .wine-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 24px;
-      margin-bottom: 48px;
     }
 
     .wine-card {
       background: var(--white);
       border-radius: var(--radius);
       padding: 28px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow);
       transition: var(--transition);
-      border: 1px solid rgba(0,0,0,0.04);
+      border-left: 4px solid transparent;
     }
 
     .wine-card:hover {
-      transform: translateY(-6px);
+      transform: translateX(8px);
       box-shadow: var(--shadow-lg);
+      border-left-color: var(--cinnabar);
     }
 
     .wine-card--premium {
-      border: 2px solid #D4A843;
+      border-left-color: #D4A843;
+      background: linear-gradient(135deg, rgba(212,168,67,0.05), white);
     }
 
     .wine-card__category {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.7rem;
+      gap: 8px;
+      font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -1109,1684 +266,414 @@
       background: rgba(31,72,66,0.08);
       padding: 4px 12px;
       border-radius: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .wine-card__name {
       font-family: var(--font-heading);
       font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 12px;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
       color: var(--dark);
+    }
+
+    .wine-card__region {
+      font-size: 0.9rem;
+      color: var(--cinnabar);
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
     .wine-card__desc {
+      font-family: var(--font-accent);
       font-style: italic;
-      color: #777;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .wine-card__price {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--cinnabar);
-    }
-
-    .wine-by-glass {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
-    }
-
-    .wine-by-glass__title {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      margin-bottom: 24px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .wine-by-glass__list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-    }
-
-    .wine-by-glass__item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 20px;
-      background: var(--cream);
-      border-radius: var(--radius-sm);
-      transition: var(--transition);
-    }
-
-    .wine-by-glass__item:hover {
-      background: var(--alabaster);
-      transform: translateX(4px);
-    }
-
-    .wine-by-glass__name {
-      font-weight: 500;
-    }
-
-    .wine-by-glass__price {
-      font-weight: 700;
-      color: var(--cinnabar);
-    }
-
-    /* ============================================
-       TINCTURES SECTION
-       ============================================ */
-    .tinctures-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, var(--steel) 0%, var(--dark) 100%);
-    }
-
-    .tinctures-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .tincture-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-sm);
-      padding: 24px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .tincture-card:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-4px);
-      border-color: rgba(236,76,48,0.3);
-    }
-
-    .tincture-card__region {
-      display: block;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--cinnabar-light);
-      font-size: 1rem;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tincture-card__desc {
-      color: rgba(255,255,255,0.6);
-      font-style: italic;
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-    }
-
-    .tincture-card__price {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--white);
-      font-size: 1.2rem;
-    }
-
-    /* ============================================
-       CONTACTS SECTION
-       ============================================ */
-    .contacts {
-      background: var(--cream);
-    }
-
-    .contacts__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .contacts__info .section-tag {
-      text-align: left;
-    }
-
-    .contacts__info .section-title {
-      text-align: left;
-    }
-
-    .contacts__details {
-      margin: 40px 0;
-    }
-
-    .contact-item {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 32px;
-      padding: 20px;
-      background: var(--white);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .contact-item:hover {
-      transform: translateX(8px);
-      box-shadow: var(--shadow);
-    }
-
-    .contact-item__icon {
-      font-size: 1.8rem;
-      flex-shrink: 0;
-      width: 50px;
-      height: 50px;
-      background: rgba(197,38,9,0.08);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cinnabar);
-    }
-
-    .contact-item h4 {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 6px;
-      color: var(--dark);
-    }
-
-    .contact-item p,
-    .contact-item a {
-      color: #555;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .contact-item a:hover {
-      color: var(--cinnabar);
-    }
-
-    .contacts__map {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 450px;
-      background: linear-gradient(135deg, var(--steel), var(--berlin));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: var(--white);
-    }
-
-    .map-placeholder__icon {
-      font-size: 4rem;
-      opacity: 0.5;
-    }
-
-    .map-placeholder p {
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 1.3rem;
-    }
-
-    .map-placeholder small {
-      opacity: 0.7;
-      font-size: 0.9rem;
-    }
-
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.6);
-      padding: 60px 0 0;
-    }
-
-    .footer__inner {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px;
-      padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .footer__logo {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--white);
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    .footer__desc {
+      color: #666;
       font-size: 0.95rem;
       line-height: 1.7;
       margin-bottom: 16px;
     }
 
-    .footer__made {
-      font-size: 0.85rem;
-      color: var(--cinnabar-light);
-    }
-
-    .footer__title {
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 20px;
-      font-size: 0.95rem;
-    }
-
-    .footer__links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer__links a {
-      font-size: 0.9rem;
-    }
-
-    .footer__links a:hover {
-      color: var(--white);
-      padding-left: 4px;
-    }
-
-    .footer__social {
-      display: flex;
-      gap: 12px;
-    }
-
-    .footer__social a {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      color: var(--white);
-    }
-
-    .footer__social a:hover {
-      background: var(--cinnabar);
-      transform: translateY(-4px);
-    }
-
-    .footer__bottom {
-      padding: 24px 0;
-      text-align: center;
-      font-size: 0.85rem;
-    }
-
-    /* ============================================
-       MODAL
-       ============================================ */
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      visibility: hidden;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .modal.active {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .modal__overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,41,50,0.8);
-      backdrop-filter: blur(8px);
-    }
-
-    .modal__content {
-      position: relative;
-      background: var(--white);
-      padding: 48px;
-      border-radius: var(--radius);
-      width: 100%;
-      max-width: 560px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-xl);
-      transform: translateY(30px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal.active .modal__content {
-      transform: translateY(0);
-    }
-
-    .modal__close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--cream);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--steel);
-      transition: var(--transition);
-    }
-
-    .modal__close:hover {
-      background: var(--cinnabar);
-      color: var(--white);
-      transform: rotate(90deg);
-    }
-
-    .modal__header {
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    .modal__title {
+    .wine-card__price {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 1.8rem;
-      margin-bottom: 8px;
+      font-size: 1.3rem;
+      color: var(--cinnabar);
     }
 
-    .modal__desc {
-      color: #777;
-      font-size: 0.95rem;
-    }
-
-    /* Form */
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border: 2px solid rgba(0,0,0,0.08);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      transition: var(--transition);
+    /* Interior Gallery */
+    .interior-gallery {
+      padding: 80px 0;
       background: var(--white);
     }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--cinnabar);
-      box-shadow: 0 0 0 4px rgba(197,38,9,0.1);
+    .interior-gallery__title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 48px;
     }
 
-    .form-row {
+    .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .form-note {
-      font-size: 0.8rem;
-      color: #999;
-      text-align: center;
-      margin-top: 16px;
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--alabaster), var(--steel));
     }
 
-    .form-status {
-      margin-top: 16px;
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      text-align: center;
-      font-weight: 500;
-      display: none;
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
 
-    .form-status.success {
-      display: block;
-      background: rgba(17,96,84,0.1);
-      color: var(--taiga);
+    .gallery-item:hover img {
+      transform: scale(1.1);
     }
 
-    .form-status.error {
-      display: block;
-      background: rgba(197,38,9,0.1);
-      color: var(--cinnabar);
-    }
-
-    /* ============================================
-       TOAST NOTIFICATIONS
-       ============================================ */
-    .toast-container {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .toast {
-      background: var(--white);
-      padding: 16px 24px;
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-xl);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      animation: slideInRight 0.3s ease;
-      min-width: 300px;
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    .toast.hide {
-      animation: slideOutRight 0.3s ease forwards;
-    }
-
-    @keyframes slideOutRight {
-      to {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-    }
-
-    .toast__icon {
-      font-size: 1.5rem;
-    }
-
-    .toast--success .toast__icon {
-      color: var(--taiga);
-    }
-
-    .toast--error .toast__icon {
-      color: var(--cinnabar);
-    }
-
-    /* ============================================
-       SCROLL TO TOP
-       ============================================ */
-    .scroll-top {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 50px;
-      height: 50px;
-      background: var(--cinnabar);
-      color: var(--white);
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      box-shadow: var(--shadow-lg);
-      z-index: 999;
-    }
-
-    .scroll-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .scroll-top:hover {
-      background: var(--deep-red);
-      transform: translateY(-4px);
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 968px) {
-      .navbar__links,
-      .navbar__actions {
-        display: none;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .section-nav {
+        top: 60px;
+        padding: 12px 0;
       }
 
-      .burger {
-        display: flex;
+      .section-nav__btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
       }
 
-      .navbar__links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        background: var(--dark);
-        padding: 32px 24px;
-        gap: 20px;
-        animation: slideDown 0.3s ease;
+      .top-positions__title {
+        font-size: 1.8rem;
       }
 
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .about__inner,
-      .contacts__inner {
-        grid-template-columns: 1fr;
-      }
-
-      .footer__inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .menu-grid,
-      .cocktails-grid,
-      .wine-grid,
-      .tinctures-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
+      .wine-card__desc {
+        font-size: 0.9rem;
       }
     }
-
-    @media (max-width: 600px) {
-      .hero__title {
-        font-size: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.75rem;
-      }
-
-      .about__stats {
-        grid-template-columns: 1fr;
-      }
-
-      .modal__content {
-        padding: 32px 24px;
-      }
-    }
-
-    /* ============================================
-       UTILITY CLASSES
-       ============================================ */
-    .text-center { text-align: center; }
-    .mt-1 { margin-top: var(--spacing-sm); }
-    .mt-2 { margin-top: var(--spacing-md); }
-    .mt-3 { margin-top: var(--spacing-lg); }
-    .mb-1 { margin-bottom: var(--spacing-sm); }
-    .mb-2 { margin-bottom: var(--spacing-md); }
-    .mb-3 { margin-bottom: var(--spacing-lg); }
   </style>
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__content">
-      <div class="preloader__logo">🐴 Москва—Владивосток</div>
-      <div class="preloader__bar">
-        <div class="preloader__progress" id="preloaderProgress"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar__inner">
-      <a href="#" class="navbar__logo">
-        <span class="navbar__logo-icon">🐴</span>
-        <span>Москва—Владивосток</span>
-      </a>
-      
-      <div class="navbar__links" id="navbarLinks">
-        <a href="#about">О ресторане</a>
-        <a href="#menu">Меню</a>
-        <a href="#cocktails">Коктейли</a>
-        <a href="#wine">Вино</a>
-        <a href="#contacts">Контакты</a>
-      </div>
-
-      <div class="navbar__actions">
-        <button class="navbar__cart" id="cartBtn" aria-label="Корзина">
-          <i class="fas fa-shopping-bag"></i>
-          <span class="navbar__cart-count" id="cartCount">0</span>
-        </button>
-        <button class="btn btn--primary btn--sm open-modal" data-modal="booking">Забронировать</button>
-      </div>
-
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span>
-        <span></span>
-        <span></span>
+  <!-- Section Navigation -->
+  <nav class="section-nav">
+    <div class="section-nav__inner">
+      <button class="section-nav__btn active" onclick="showSection('kitchen')">
+        <i class="fas fa-utensils"></i>
+        Кухня
+      </button>
+      <button class="section-nav__btn" onclick="showSection('bar')">
+        <i class="fas fa-cocktail"></i>
+        Бар
+      </button>
+      <button class="section-nav__btn" onclick="showSection('cocktails')">
+        <i class="fas fa-wine-glass-alt"></i>
+        Коктейли
+      </button>
+      <button class="section-nav__btn" onclick="showSection('wine')">
+        <i class="fas fa-wine-bottle"></i>
+        Вино
       </button>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <svg viewBox="0 0 1920 1080" class="hero__svg" xmlns="http://www.w3.org/2000/svg">
-        <!-- Horse and Tiger SVG from your file -->
-        <path fill="#EC4C30" d="M1599.38 -287.17C1577.11 -347.484 1466.94 -370.577 1466.94 -370.577L1449.18 -326.495C1449.31 -326.455 1506.45 -308.109 1519.99 -258.599C1533.32 -209.816 1433.14 -189.849 1444.6 -69.2206C1444.13 -69.01 1443.66 -68.8006 1443.2 -68.5868C1406.76 -52.006 1358.93 -26.0463 1295.18 12.0395C1289.78 15.2652 1284.57 18.4666 1279.53 21.6414C1238.51 -5.58808 1200.39 -28.6873 1123.15 -60.7738C1138.53 -64.4916 1145.8 -73.9356 1149.35 -96.0468C1128.28 -89.8034 1109.77 -86.7459 1090.48 -81.3485C1109.59 -89.638 1117.97 -95.0615 1118.19 -120.716C1118.103 -120.692 1093.81 -109.333 1065.74 -95.7644C1051.03 -88.6522 1008.65 -66.1412 1008.52 -66.0732L892.626 -14.5651L902 13.4985L1004.7 27.3935C1041.34 39.2085 1051.44 44.16 1077.45 26.221C1154.91 112.478 1112.14 137.796 1152.09 196.412C1095.62 275.748 1023.99 360.039 869.581 437.109L896.545 468.906C1056.74 392.013 1094.48 371.871 1211.56 248.103C1221.81 253.558 1235.13 254.56 1250.47 252.238C1238.25 351.031 1201.83 461.902 1104.3 609.4L1143.55 623.455C1244.96 475.133 1308.54 387.785 1355.48 209.044C1391.63 188.307 1428.56 163.007 1460.32 139.323C1473.31 162.115 1492.83 178.053 1520.79 194.977C1567.39 223.193 1717.49 261.212 1739.61 84.6084C1798.14 129.578 1849.8 147.891 1907.27 160.95L1915.4 128.906C1846.81 103.183 1783.02 55.2896 1724.23 10.8475C1714.46 32.1772 1699.4 63.4762 1687.76 80.4786L1627.21 46.8246C1670.51 11.4371 1701.08 -33.2292 1701.08 -33.2292C1790.36 -17.2386 1837.28 -4.05312 1918.67 27.4686L1923.83 -10.1322C1830.04 -62.2588 1624.11 -167.167 1506.91 -116.892C1546.49 -171.352 1633.68 -194.274 1599.38 -287.17Z"/>
-      </svg>
-    </div>
-    <div class="hero__overlay"></div>
-    <div class="hero__pattern-top"></div>
-    
-    <div class="hero__content">
-      <p class="hero__tagline">Russian New Wave</p>
-      <h1 class="hero__title">Русская кухня<br>с дальневосточным характером</h1>
-      <p class="hero__subtitle">Место, где формируются новые русские традиции</p>
-      <div class="hero__actions">
-        <button class="btn btn--primary btn--lg open-modal" data-modal="booking">
-          <i class="fas fa-calendar-check"></i>
-          Забронировать стол
-        </button>
-        <a href="#menu" class="btn btn--ghost btn--lg">
-          Посмотреть меню
-          <i class="fas fa-arrow-down"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero__pattern-bottom"></div>
-  </section>
-
-  <!-- About Section -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="about__inner">
-        <div class="about__visual">
-          <div class="about__pattern-box">
-            <img src="images/pattern-taiga.jpg" alt="Паттерн Тайги" class="about__pattern-img" loading="lazy">
+  <!-- Kitchen Section -->
+  <section id="kitchen" class="menu-section active">
+    <!-- Top Positions -->
+    <div class="top-positions">
+      <h2 class="top-positions__title">Хиты кухни</h2>
+      <div class="top-grid">
+        <div class="top-card">
+          <span class="top-card__badge">Хит</span>
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="Тартар" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Тартар из филе тунца</h3>
+            <p class="top-card__desc">С чипсами из тапиоки</p>
+            <span class="top-card__price">890 ₽</span>
           </div>
-          <div class="about__badge">
-            <span class="about__badge-icon">🐴</span>
-            <span>Конь</span>
-          </div>
-          <div class="about__badge about__badge--tiger">
-            <span class="about__badge-icon">🐅</span>
-            <span>Тигр</span>
+        </div>
+        
+        <div class="top-card">
+          <span class="top-card__badge">Хит</span>
+          <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=600" alt="Оливье" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Оливье приморский</h3>
+            <p class="top-card__desc">С языком, горчичным майо и красной икрой</p>
+            <span class="top-card__price">790 ₽</span>
           </div>
         </div>
 
-        <div class="about__text">
-          <span class="section-tag">Легенда бренда</span>
-          <h2 class="section-title">Здесь и кони целы,<br>и тигры сыты</h2>
-          <p class="about__lead">«Москва–Владивосток» — это не этно и не фьюжн. Это новая русская традиция, которая случается здесь и сейчас.</p>
-          <p>Шеф играет с техниками, продуктами и акцентами: от холодца с мороженым из хрена до ухи с вакаме, гребешка с демигласом и домашних пельменей рядом с гёдза.</p>
-          <p>Лошадь — устойчивость и традиция. Тигр — свобода и современный взгляд. Это взгляд на Россию с дальневосточного берега — спокойный, уверенный и немного ироничный.</p>
-          
-          <div class="about__stats">
-            <div class="stat">
-              <span class="stat__number" data-count="60">0</span>
-              <span class="stat__label">блюд в меню</span>
-            </div>
-            <div class="stat">
-              <span class="stat__number" data-count="14">0</span>
-              <span class="stat__label">авторских коктейлей</span>
-            </div>
-            <div class="stat">
-              <span class="stat__number" data-count="40">0</span>
-              <span class="stat__label">позиций вина</span>
-            </div>
+        <div class="top-card">
+          <span class="top-card__badge">Премиум</span>
+          <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600" alt="Рыба" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Красная рыба на углях</h3>
+            <p class="top-card__desc">Свежая красная рыба, приготовленная на углях</p>
+            <span class="top-card__price">1 670 ₽</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Divider with Sea Pattern -->
-  <div class="divider divider--sea">
-    <img src="images/pattern-sea.jpg" alt="Паттерн Моря" loading="lazy">
-  </div>
+  <!-- Bar Section -->
+  <section id="bar" class="menu-section">
+    <div class="top-positions">
+      <h2 class="top-positions__title">Популярное в баре</h2>
+      <div class="top-grid">
+        <div class="top-card">
+          <span class="top-card__badge">Хит</span>
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600" alt="Настойка" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Башкирская настойка</h3>
+            <p class="top-card__desc">Медовая с перцем</p>
+            <span class="top-card__price">390 ₽</span>
+          </div>
+        </div>
 
-  <!-- Menu Section -->
-  <section class="menu-section section" id="menu">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Гастрономия</span>
-        <h2 class="section-title">Наше меню</h2>
-        <p class="section-desc">Русская кухня как база. А всё, что появилось вокруг нас — переосмысляется в русском контексте.</p>
+        <div class="top-card">
+          <img src="https://images.unsplash.com/photo-1569937756447-e3e1be61b9f8?w=600" alt="Водка" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Polba</h3>
+            <p class="top-card__desc">Русская водка премиум класса</p>
+            <span class="top-card__price">340 ₽</span>
+          </div>
+        </div>
+
+        <div class="top-card">
+          <img src="https://images.unsplash.com/photo-1527281400684-1894208166b6?w=600" alt="Виски" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Chivas Regal 12 y.o.</h3>
+            <p class="top-card__desc">Шотландский виски</p>
+            <span class="top-card__price">690 ₽</span>
+          </div>
+        </div>
       </div>
-
-      <!-- Search -->
-      <div class="menu-search">
-        <input type="text" id="menuSearch" placeholder="Поиск по меню...">
-        <i class="fas fa-search"></i>
-      </div>
-
-      <!-- Tabs -->
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="cold">
-          <span>🥗 Холодные</span>
-        </button>
-        <button class="tab-btn" data-tab="hot">
-          <span>🔥 Горячие</span>
-        </button>
-        <button class="tab-btn" data-tab="salads">
-          <span>🥬 Салаты</span>
-        </button>
-        <button class="tab-btn" data-tab="soups">
-          <span>🍲 Супы</span>
-        </button>
-        <button class="tab-btn" data-tab="main">
-          <span>🍖 Основные</span>
-        </button>
-        <button class="tab-btn" data-tab="desserts">
-          <span>🍰 Десерты</span>
-        </button>
-      </div>
-
-      <!-- Menu Grids -->
-      <div class="menu-grid active" id="cold">
-        <!-- Cards will be populated by JavaScript -->
-      </div>
-
-      <div class="menu-grid" id="hot"></div>
-      <div class="menu-grid" id="salads"></div>
-      <div class="menu-grid" id="soups"></div>
-      <div class="menu-grid" id="main"></div>
-      <div class="menu-grid" id="desserts"></div>
     </div>
   </section>
 
   <!-- Cocktails Section -->
-  <section class="cocktails-section" id="cocktails">
-    <div class="cocktails-section__bg">
-      <img src="images/pattern-taiga.jpg" alt="Паттерн Тайги" loading="lazy">
-    </div>
-    <div class="container">
-      <div class="section-header section-header--light">
-        <span class="section-tag section-tag--light">Авторские коктейли</span>
-        <h2 class="section-title section-title--light">Коктейли от Ивана Гринько</h2>
-        <p class="section-desc section-desc--light">Каждый коктейль — это история о России, рассказанная через вкус</p>
-      </div>
+  <section id="cocktails" class="menu-section">
+    <div class="top-positions">
+      <h2 class="top-positions__title">Авторские коктейли от Ивана Гринько</h2>
+      <div class="top-grid">
+        <div class="top-card">
+          <span class="top-card__badge">Хит</span>
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600" alt="Коктейль" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Красная Москва</h3>
+            <p class="top-card__desc">Розовый джин на малине, сухой вермут, кардинал из свёклы, лимон, белок</p>
+            <span class="top-card__price">680 ₽</span>
+          </div>
+        </div>
 
-      <div class="cocktails-grid" id="cocktailsGrid">
-        <!-- Populated by JavaScript -->
+        <div class="top-card">
+          <span class="top-card__badge">Хит</span>
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600" alt="Коктейль" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Таёжный негрони</h3>
+            <p class="top-card__desc">Джин на бруснике и саган-дайля, вермут, кампари</p>
+            <span class="top-card__price">680 ₽</span>
+          </div>
+        </div>
+
+        <div class="top-card">
+          <img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600" alt="Коктейль" class="top-card__image">
+          <div class="top-card__content">
+            <h3 class="top-card__name">Приморский мул</h3>
+            <p class="top-card__desc">Водка на вяленом манго, маракуйя, юдзу, лист лайма, имбирный эль</p>
+            <span class="top-card__price">680 ₽</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Wine Section -->
-  <section class="wine-section section" id="wine">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Винная карта</span>
-        <h2 class="section-title">Вино</h2>
-        <p class="section-desc">От российских терруаров до великих домов Шампани</p>
-      </div>
-
-      <div class="wine-grid" id="wineGrid">
-        <!-- Populated by JavaScript -->
-      </div>
-
-      <div class="wine-by-glass">
-        <h3 class="wine-by-glass__title">
-          <i class="fas fa-wine-glass-alt"></i>
-          Вино по бокалам (125 мл)
-        </h3>
-        <div class="wine-by-glass__list" id="wineByGlass">
-          <!-- Populated by JavaScript -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tinctures Section -->
-  <section class="tinctures-section">
-    <div class="container">
-      <div class="section-header section-header--light">
-        <span class="section-tag section-tag--light">Фирменные настойки</span>
-        <h2 class="section-title section-title--light">Россия в бокале</h2>
-        <p class="section-desc section-desc--light">Настойки из 10 регионов — гастрономическое путешествие по России</p>
-      </div>
-
-      <div class="tinctures-grid" id="tincturesGrid">
-        <!-- Populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacts Section -->
-  <section class="contacts section" id="contacts">
-    <div class="container">
-      <div class="contacts__inner">
-        <div class="contacts__info">
-          <span class="section-tag">Контакты</span>
-          <h2 class="section-title">Приходите<br>в гости</h2>
-          
-          <div class="contacts__details">
-            <div class="contact-item">
-              <span class="contact-item__icon">📍</span>
-              <div>
-                <h4>Адрес</h4>
-                <p>Санкт-Петербург,<br>Московский проспект, 206</p>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-item__icon">📞</span>
-              <div>
-                <h4>Телефон</h4>
-                <p><a href="tel:+74231234567">+7 (423) 123-45-67</a></p>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-item__icon">🕐</span>
-              <div>
-                <h4>Режим работы</h4>
-                <p>Пн–Чт: 12:00 – 23:00<br>Пт–Сб: 12:00 – 00:00<br>Вс: 12:00 – 22:00</p>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <span class="contact-item__icon">✉️</span>
-              <div>
-                <h4>Email</h4>
-                <p><a href="mailto:hello@msk-vldvstk.ru">hello@msk-vldvstk.ru</a></p>
-              </div>
-            </div>
-          </div>
-
-          <button class="btn btn--primary btn--lg open-modal" data-modal="booking" style="width: 100%;">
-            <i class="fas fa-calendar-check"></i>
-            Забронировать стол
-          </button>
-        </div>
-
-        <div class="contacts__map">
-          <div class="map-placeholder">
-            <i class="fas fa-map-marked-alt map-placeholder__icon"></i>
-            <p>Яндекс.Карта</p>
-            <small>Московский проспект, 206</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <span class="footer__logo">🐴 Москва—Владивосток</span>
-          <p class="footer__desc">Ресторан русской дальневосточной кухни. Russian New Wave — место, где формируются новые русские традиции.</p>
-          <p class="footer__made">Made by beam team</p>
-        </div>
-
-        <div class="footer__nav">
-          <h4 class="footer__title">Навигация</h4>
-          <div class="footer__links">
-            <a href="#about">О ресторане</a>
-            <a href="#menu">Меню</a>
-            <a href="#cocktails">Коктейли</a>
-            <a href="#wine">Вино</a>
-            <a href="#contacts">Контакты</a>
-          </div>
-        </div>
-
-        <div class="footer__socials">
-          <h4 class="footer__title">Мы в соцсетях</h4>
-          <div class="footer__social">
-            <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer__bottom">
-        <p>© 2025 Москва-Владивосток. Все права защищены.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Booking Modal -->
-  <div class="modal" id="bookingModal">
-    <div class="modal__overlay"></div>
-    <div class="modal__content">
-      <button class="modal__close" aria-label="Закрыть">
-        <i class="fas fa-times"></i>
-      </button>
+  <section id="wine" class="menu-section">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
       
-      <div class="modal__header">
-        <h2 class="modal__title">Забронировать стол</h2>
-        <p class="modal__desc">Оставьте заявку, и мы подтвердим бронь в течение 15 минут</p>
+      <!-- Sparkling -->
+      <div class="wine-category">
+        <h3 class="wine-category__title">Игристое</h3>
+        <div class="wine-grid">
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-bottle"></i> Игристое</span>
+            <h4 class="wine-card__name">Rosé Brut, Cuvée Jean-Louis</h4>
+            <p class="wine-card__region">Бургундия, Франция</p>
+            <p class="wine-card__desc">С шармом. Клубника, малина и лёгкая сливочность.</p>
+            <span class="wine-card__price">4 900 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-bottle"></i> Игристое</span>
+            <h4 class="wine-card__name">Магнатум Блан де Блан, Лефкадия</h4>
+            <p class="wine-card__region">Кубань, Россия</p>
+            <p class="wine-card__desc">Классический метод из шардоне. Яблоко, бриошь и свежесть.</p>
+            <span class="wine-card__price">5 100 ₽</span>
+          </div>
+
+          <div class="wine-card wine-card--premium">
+            <span class="wine-card__category"><i class="fas fa-champagne-glasses"></i> Шампанское</span>
+            <h4 class="wine-card__name">Ruinart Rosé Brut</h4>
+            <p class="wine-card__region">Шампань, Франция</p>
+            <p class="wine-card__desc">Элегантность и минеральность Шардоне, структура и красные ягоды Пино Нуар. Малина, клубника, грейпфрут, пряность.</p>
+            <span class="wine-card__price">55 000 ₽</span>
+          </div>
+        </div>
       </div>
 
-      <form id="bookingForm" class="booking-form">
-        <div class="form-group">
-          <label for="bookingName">Имя *</label>
-          <input type="text" id="bookingName" name="name" placeholder="Ваше имя" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookingPhone">Телефон *</label>
-          <input type="tel" id="bookingPhone" name="phone" placeholder="+7 (999) 000-00-00" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="bookingDate">Дата *</label>
-            <input type="date" id="bookingDate" name="date" required>
+      <!-- White Wine -->
+      <div class="wine-category">
+        <h3 class="wine-category__title">Белое вино</h3>
+        <div class="wine-grid">
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Белое · Россия</span>
+            <h4 class="wine-card__name">Дуванкой, Репин Олег</h4>
+            <p class="wine-card__region">Крым</p>
+            <p class="wine-card__desc">Алиготе с морским характером. Цитрус, зелёное яблоко и минеральная свежесть.</p>
+            <span class="wine-card__price">9 900 ₽</span>
           </div>
 
-          <div class="form-group">
-            <label for="bookingTime">Время *</label>
-            <input type="time" id="bookingTime" name="time" required>
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Белое · Франция</span>
+            <h4 class="wine-card__name">Sancerre, La Clef du Récit</h4>
+            <p class="wine-card__region">Долина Луары</p>
+            <p class="wine-card__desc">Истинный, классический стиль региона Сансер, 40-летние лозы. Персик, яблоко, груша.</p>
+            <span class="wine-card__price">11 900 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Белое · Бургундия</span>
+            <h4 class="wine-card__name">Chablis, Domaine des Hâtes</h4>
+            <p class="wine-card__region">Бургундия, Франция</p>
+            <p class="wine-card__desc">Чистый стиль Шабли. Зелёное яблоко, лимон и белые цветы.</p>
+            <span class="wine-card__price">12 400 ₽</span>
           </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="bookingGuests">Количество гостей</label>
-          <select id="bookingGuests" name="guests">
-            <option value="1">1 гость</option>
-            <option value="2" selected>2 гостя</option>
-            <option value="3">3 гостя</option>
-            <option value="4">4 гостя</option>
-            <option value="5">5 гостей</option>
-            <option value="6">6 гостей</option>
-            <option value="7+">7 и более</option>
-          </select>
+      <!-- Red Wine -->
+      <div class="wine-category">
+        <h3 class="wine-category__title">Красное вино</h3>
+        <div class="wine-grid">
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass"></i> Красное · Россия</span>
+            <h4 class="wine-card__name">Сира, Репин Олег</h4>
+            <p class="wine-card__region">Крым</p>
+            <p class="wine-card__desc">Авторская индивидуальность. Черника, ежевика, фруктовый джем и специи.</p>
+            <span class="wine-card__price">12 900 ₽</span>
+          </div>
+
+          <div class="wine-card wine-card--premium">
+            <span class="wine-card__category"><i class="fas fa-wine-glass"></i> Красное · Франция</span>
+            <h4 class="wine-card__name">Saint-Émilion Grand Cru, Château Tour Saint-Pierre</h4>
+            <p class="wine-card__region">Бордо</p>
+            <p class="wine-card__desc">Классический правый берег. Кассис, слива и благородный дуб.</p>
+            <span class="wine-card__price">11 400 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass"></i> Красное · Италия</span>
+            <h4 class="wine-card__name">Chianti Classico, Vallepicciola</h4>
+            <p class="wine-card__region">Тоскана</p>
+            <p class="wine-card__desc">Структурное и элегантное. Вишня, специи, лёгкий табак.</p>
+            <span class="wine-card__price">9 400 ₽</span>
+          </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="bookingComment">Комментарий</label>
-          <textarea id="bookingComment" name="comment" rows="3" placeholder="Особые пожелания, аллергии, предпочтения по столику..."></textarea>
+      <!-- Wine by Glass -->
+      <div class="wine-category">
+        <h3 class="wine-category__title">Вино по бокалам (125 мл)</h3>
+        <div class="wine-grid">
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Игристое</span>
+            <h4 class="wine-card__name">Crémant de Limoux "Eugenie"</h4>
+            <p class="wine-card__region">Лангедок-Руссильон, Франция</p>
+            <span class="wine-card__price">940 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Игристое</span>
+            <h4 class="wine-card__name">Prosecco Spumante</h4>
+            <p class="wine-card__region">Венето, Италия</p>
+            <span class="wine-card__price">740 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass-alt"></i> Белое</span>
+            <h4 class="wine-card__name">Шардоне, Альма Вэлли</h4>
+            <p class="wine-card__region">Крым, Россия</p>
+            <span class="wine-card__price">690 ₽</span>
+          </div>
+
+          <div class="wine-card">
+            <span class="wine-card__category"><i class="fas fa-wine-glass"></i> Красное</span>
+            <h4 class="wine-card__name">Пино Менье Кюве №2, Олег Репин</h4>
+            <p class="wine-card__region">Крым, Россия</p>
+            <span class="wine-card__price">690 ₽</span>
+          </div>
         </div>
-
-        <button type="submit" class="btn btn--primary btn--full btn--lg">
-          <i class="fas fa-paper-plane"></i>
-          Отправить заявку
-        </button>
-
-        <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
-        
-        <div class="form-status" id="formStatus"></div>
-      </form>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <!-- Interior Gallery -->
+  <section class="interior-gallery">
+    <h2 class="interior-gallery__title">Атмосфера ресторана</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Интерьер">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600" alt="Интерьер">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1466978913421-dad23d4a7c5a?w=600" alt="Интерьер">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?w=600" alt="Интерьер">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600" alt="Интерьер">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600" alt="Интерьер">
+      </div>
+    </div>
+  </section>
 
   <script>
-    // ============================================
-    // DATA
-    // ============================================
-    const menuData = {
-      cold: [
-        { name: 'Тартар из филе тунца', desc: 'С чипсами из тапиоки', price: 890, tags: ['hit'] },
-        { name: 'Бычок-боровичок', desc: 'Тартар с муссом из грибов', price: 890, tags: [] },
-        { name: 'Холодец', desc: 'Из свиной рульки с муссом из хрена', price: 490, tags: ['classic'] },
-        { name: 'Филе сельди', desc: 'С толчёным молодым картофелем', price: 490, tags: [] },
-        { name: 'Телячий язык', desc: 'С муссом из хрена', price: 740, tags: [] },
-        { name: 'Три вида сала', desc: 'С зелёным луком', price: 490, tags: [] },
-        { name: 'Грузди солёные', desc: 'С фермерской сметаной', price: 990, tags: [] },
-        { name: 'Паштет из куриной печени', desc: 'С булочкой бриошь и яблочным конфи', price: 490, tags: [] },
-        { name: 'Домашние соленья', desc: 'Огурцы, чеснок, черемша, квашеная капуста', price: 490, tags: [] },
-        { name: 'Азиатские соленья', desc: 'Древесные грибы, корейская морковь, кимчи', price: 490, tags: [] }
-      ],
-      hot: [
-        { name: 'Креветки темпура', desc: 'С васаби-муссом', price: 540, tags: ['hit'] },
-        { name: 'Обожжённая молодая капуста', desc: 'С соусом из сыра горгонзола', price: 490, tags: [] },
-        { name: 'Мурманский гребешок', desc: 'С картофельным муссом', price: 790, tags: ['premium'] },
-        { name: 'Кимчи с креветкой', desc: 'Острая корейская капуста с креветкой', price: 640, tags: [] }
-      ],
-      salads: [
-        { name: 'Оливье классический', desc: 'С докторской колбасой', price: 490, tags: ['classic'] },
-        { name: 'Оливье приморский', desc: 'С языком, горчичным майо и красной икрой', price: 790, tags: ['hit'] },
-        { name: 'Рыбацкая мимоза', desc: 'С треской и икрой из водорослей', price: 690, tags: [] },
-        { name: 'Хрустящие баклажаны', desc: 'С кремом из феты и спелыми томатами', price: 690, tags: [] },
-        { name: 'Владивосток-Токпо', desc: 'С чёрной треской', price: 890, tags: ['signature'] },
-        { name: 'Салат с тунцом и крабом', desc: 'С острова Русский', price: 1290, tags: ['premium'] },
-        { name: 'Океанический салат', desc: 'Из трёх видов водорослей с сельдереем', price: 690, tags: [] },
-        { name: 'Овощной салат', desc: 'Из огурцов, азербайджанских томатов и зелени', price: 610, tags: [] }
-      ],
-      soups: [
-        { name: 'Борщ по-московски', desc: 'Со смальцем', price: 690, tags: ['classic'] },
-        { name: 'Щи', desc: 'С печёным картофелем и жареной свиной грудинкой', price: 590, tags: [] },
-        { name: 'Морская уха', desc: 'С вакаме', price: 990, tags: ['hit'] },
-        { name: 'Русский суп', desc: 'Из белых грибов', price: 690, tags: [] },
-        { name: 'Пряный суп', desc: 'С крабом и креветками', price: 990, tags: ['premium'] }
-      ],
-      main: [
-        { name: 'Красная рыба на углях', desc: 'Свежая красная рыба, приготовленная на углях', price: 1670, tags: ['hit', 'premium'] },
-        { name: 'Говядина по-строгановски', desc: 'С маринованными огурцами', price: 890, tags: ['classic'] },
-        { name: 'Томлёная ножка кролика', desc: 'С полбой и соусом из чернослива', price: 1340, tags: [] },
-        { name: 'Кальмар на углях', desc: 'Свежий кальмар с дымком', price: 890, tags: [] },
-        { name: 'Красная креветка на углях', desc: 'Крупная креветка с огнём', price: 990, tags: [] },
-        { name: 'Пельмени домашние', desc: 'Ручная лепка, сочная начинка', price: 690, tags: ['classic'] },
-        { name: 'Гёдза со свининой и креветкой', desc: 'Японские пельмени с азиатским акцентом', price: 790, tags: [] },
-        { name: 'Азиатский шницель', desc: 'Из куриной грудки с битыми огурцами', price: 690, tags: [] }
-      ],
-      desserts: [
-        { name: 'Шарлотка', desc: 'С мороженым из сливочного печенья', price: 540, tags: ['hit'] },
-        { name: 'Глазированный сырок', desc: 'С вареньем из чёрной смородины', price: 490, tags: [] },
-        { name: 'Шоколадный мункейк', desc: 'Со сливочным кремом', price: 490, tags: [] },
-        { name: 'Сибирские вареники', desc: 'С чёрной смородиной', price: 490, tags: [] }
-      ]
-    };
-
-    const cocktailsData = [
-      { name: 'Приморский мул', desc: 'Водка на вяленом манго, маракуйя, юдзу, лист лайма, имбирный эль', price: 680, icon: '🍹', featured: false },
-      { name: 'Красная Москва', desc: 'Розовый джин на малине, сухой вермут, кардинал из свёклы, лимон, белок', price: 680, icon: '🥃', featured: true },
-      { name: 'Садовый тики', desc: 'Светлый ром, апельсиновый ликёр, крыжовник, огурец, лайм', price: 680, icon: '', featured: false },
-      { name: 'Мандариновый мерзавчик', desc: 'Грушевая водка, сухой вермут, мандарин, бузина', price: 680, icon: '🥂', featured: false },
-      { name: 'Кофейный варенец', desc: 'Ванильная водка, кофейный ликёр, Амаретто, пена из ряженки', price: 680, icon: '☕', featured: false },
-      { name: 'Клюквенное поле', desc: 'Клюквенная водка, клюква, иван-чай', price: 640, icon: '🫐', featured: false },
-      { name: 'Саянский хайбол', desc: 'Джин, жимолость, черника, чабрец', price: 680, icon: '🌿', featured: false },
-      { name: 'Тульский пряник', desc: 'Джин, херес, бергамот, имбирный пряник', price: 690, icon: '🍪', featured: false },
-      { name: 'Станичный', desc: 'Груша, айва, дыня, зелёное яблоко, лимонник', price: 680, icon: '🍐', featured: false },
-      { name: 'Морошковый сауэр', desc: 'Пряный ром, ликёр морошки', price: 680, icon: '🫙', featured: false },
-      { name: 'Таёжный негрони', desc: 'Джин на бруснике и саган-дайля, вермут, кампари', price: 680, icon: '🌲', featured: true },
-      { name: 'Земляничный спритц', desc: 'Апероль, земляника, игристое', price: 790, icon: '🍓', featured: false },
-      { name: 'Дачная маргарита', desc: 'Текила, крыжовник', price: 680, icon: '', featured: false },
-      { name: 'Старомодный', desc: 'Бурбон, шоколад, травы, солёная карамель, имбирный пряник', price: 710, icon: '🥃', featured: false }
-    ];
-
-    const wineData = [
-      { category: 'Игристое', name: 'Rosé Brut, Cuvée Jean-Louis', desc: 'Бургундия, Франция. Клубника, малина и лёгкая сливочность.', price: 4900, premium: false },
-      { category: 'Игристое', name: 'Магнатум Блан де Блан, Лефкадия', desc: 'Кубань, Россия. Яблоко, бриошь и свежесть.', price: 5100, premium: false },
-      { category: 'Шампанское', name: 'Ruinart Rosé Brut', desc: 'Малина, клубника, грейпфрут, пряность.', price: 55000, premium: true },
-      { category: 'Белое · Россия', name: 'Дуванкой, Репин Олег', desc: 'Крым. Цитрус, зелёное яблоко и минеральная свежесть.', price: 9900, premium: false },
-      { category: 'Белое · Франция', name: 'Sancerre, La Clef du Récit', desc: 'Долина Луары. Персик, яблоко, груша.', price: 11900, premium: false },
-      { category: 'Красное · Россия', name: 'Сира, Репин Олег', desc: 'Крым. Черника, ежевика, фруктовый джем и специи.', price: 12900, premium: false },
-      { category: 'Красное · Франция', name: 'Saint-Émilion Grand Cru', desc: 'Бордо. Кассис, слива и благородный дуб.', price: 11400, premium: true },
-      { category: 'Красное · Италия', name: 'Chianti Classico, Vallepicciola', desc: 'Тоскана. Вишня, специи, лёгкий табак.', price: 9400, premium: false }
-    ];
-
-    const wineByGlassData = [
-      { name: 'Crémant de Limoux "Eugenie"', price: 940 },
-      { name: 'Prosecco Spumante', price: 740 },
-      { name: 'Шардоне, Альма Вэлли', price: 690 },
-      { name: 'Пино Менье Кюве №2, Олег Репин', price: 690 }
-    ];
-
-    const tincturesData = [
-      { region: 'Башкирская', desc: 'Медовая с перцем', price: 390 },
-      { region: 'Карельская', desc: 'Морошка и черника на бородинском хлебе', price: 390 },
-      { region: 'Уральская', desc: 'Черноплодка, чёрная смородина', price: 390 },
-      { region: 'Бородинская', desc: 'С кориандром и чесноком', price: 390 },
-      { region: 'Сибирская', desc: 'Брусника, кедровый орех и пихта', price: 390 },
-      { region: 'Ростовская', desc: 'Хреновуха с мёдом и укропом', price: 390 },
-      { region: 'Алтайская', desc: 'Травяной сбор с калиной', price: 390 },
-      { region: 'Сочинская', desc: 'Лимон, апельсин и грейпфрут', price: 390 },
-      { region: 'Дальневосточная', desc: 'Облепиха с розмарином и лимоном', price: 390 },
-      { region: 'Среднерусская', desc: 'Яблоко, вишня и кориандр', price: 390 }
-    ];
-
-    // ============================================
-    // STATE
-    // ============================================
-    let cart = [];
-    let favorites = [];
-
-    // ============================================
-    // INITIALIZATION
-    // ============================================
-    document.addEventListener('DOMContentLoaded', () => {
-      // Preloader
-      simulatePreloader();
-      
-      // Render content
-      renderMenu();
-      renderCocktails();
-      renderWine();
-      renderTinctures();
-      
-      // Initialize interactions
-      initNavigation();
-      initTabs();
-      initModals();
-      initForms();
-      initScrollEffects();
-      initSearch();
-      initCart();
-      initScrollToTop();
-    });
-
-    // ============================================
-    // PRELOADER
-    // ============================================
-    function simulatePreloader() {
-      const preloader = document.getElementById('preloader');
-      const progress = document.getElementById('preloaderProgress');
-      let width = 0;
-      
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            preloader.classList.add('hidden');
-          }, 300);
-        } else {
-          width += Math.random() * 15;
-          if (width > 100) width = 100;
-          progress.style.width = width + '%';
-        }
-      }, 200);
-    }
-
-    // ============================================
-    // RENDER FUNCTIONS
-    // ============================================
-    function renderMenu() {
-      Object.keys(menuData).forEach(category => {
-        const grid = document.getElementById(category);
-        if (!grid) return;
-        
-        grid.innerHTML = menuData[category].map(item => createMenuCard(item)).join('');
+    function showSection(sectionName) {
+      // Hide all sections
+      document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.remove('active');
       });
-      
-      // Add event listeners to favorite buttons
-      document.querySelectorAll('.menu-card__action.favorite').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const card = btn.closest('.menu-card');
-          const name = card.querySelector('.menu-card__title').textContent;
-          toggleFavorite(name, btn);
-        });
-      });
-      
-      // Add event listeners to cart buttons
-      document.querySelectorAll('.menu-card__action.cart').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const card = btn.closest('.menu-card');
-          const name = card.querySelector('.menu-card__title').textContent;
-          const price = parseInt(card.querySelector('.menu-card__price').textContent);
-          addToCart({ name, price });
-        });
-      });
-    }
 
-    function createMenuCard(item) {
-      const tags = item.tags.map(tag => {
-        const classNames = {
-          hit: 'menu-card__tag menu-card__tag--hit',
-          classic: 'menu-card__tag',
-          premium: 'menu-card__tag',
-          signature: 'menu-card__tag menu-card__tag--hit'
-        };
-        const labels = {
-          hit: 'Хит',
-          classic: 'Классика',
-          premium: 'Премиум',
-          signature: 'Фирменное'
-        };
-        return `<span class="${classNames[tag]}">${labels[tag]}</span>`;
-      }).join('');
-      
-      const isFavorite = favorites.includes(item.name);
-      
-      return `
-        <div class="menu-card ${item.featured ? 'menu-card--featured' : ''}">
-          <div class="menu-card__actions">
-            <button class="menu-card__action favorite ${isFavorite ? 'active' : ''}" aria-label="В избранное">
-              <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
-            </button>
-            <button class="menu-card__action cart" aria-label="В корзину">
-              <i class="fas fa-shopping-bag"></i>
-            </button>
-          </div>
-          <div class="menu-card__header">
-            <h3 class="menu-card__title">${item.name}</h3>
-            <span class="menu-card__price">${item.price} ₽</span>
-          </div>
-          <p class="menu-card__desc">${item.desc}</p>
-          <div class="menu-card__tags">${tags}</div>
-        </div>
-      `;
-    }
-
-    function renderCocktails() {
-      const grid = document.getElementById('cocktailsGrid');
-      grid.innerHTML = cocktailsData.map(cocktail => `
-        <div class="cocktail-card ${cocktail.featured ? 'cocktail-card--featured' : ''}">
-          ${cocktail.featured ? '<span class="cocktail-card__badge">Хит</span>' : ''}
-          <span class="cocktail-card__icon">${cocktail.icon}</span>
-          <h3 class="cocktail-card__name">${cocktail.name}</h3>
-          <p class="cocktail-card__desc">${cocktail.desc}</p>
-          <span class="cocktail-card__price">${cocktail.price} ₽</span>
-        </div>
-      `).join('');
-    }
-
-    function renderWine() {
-      const grid = document.getElementById('wineGrid');
-      grid.innerHTML = wineData.map(wine => `
-        <div class="wine-card ${wine.premium ? 'wine-card--premium' : ''}">
-          <span class="wine-card__category">
-            <i class="fas fa-wine-bottle"></i>
-            ${wine.category}
-          </span>
-          <h3 class="wine-card__name">${wine.name}</h3>
-          <p class="wine-card__desc">${wine.desc}</p>
-          <span class="wine-card__price">${wine.price.toLocaleString()} ₽</span>
-        </div>
-      `).join('');
-      
-      const byGlassList = document.getElementById('wineByGlass');
-      byGlassList.innerHTML = wineByGlassData.map(wine => `
-        <div class="wine-by-glass__item">
-          <span class="wine-by-glass__name">${wine.name}</span>
-          <span class="wine-by-glass__price">${wine.price} ₽</span>
-        </div>
-      `).join('');
-    }
-
-    function renderTinctures() {
-      const grid = document.getElementById('tincturesGrid');
-      grid.innerHTML = tincturesData.map(tincture => `
-        <div class="tincture-card">
-          <span class="tincture-card__region">${tincture.region}</span>
-          <p class="tincture-card__desc">${tincture.desc}</p>
-          <span class="tincture-card__price">${tincture.price} ₽</span>
-        </div>
-      `).join('');
-    }
-
-    // ============================================
-    // NAVIGATION
-    // ============================================
-    function initNavigation() {
-      const burger = document.getElementById('burger');
-      const navbarLinks = document.getElementById('navbarLinks');
-      const navbar = document.getElementById('navbar');
-      
-      burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        navbarLinks.classList.toggle('active');
-      });
-      
-      // Close mobile menu on link click
-      navbarLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          burger.classList.remove('active');
-          navbarLinks.classList.remove('active');
-        });
-      });
-      
-      // Navbar scroll effect
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      });
-    }
-
-    // ============================================
-    // TABS
-    // ============================================
-    function initTabs() {
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const menuGrids = document.querySelectorAll('.menu-grid');
-      
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const tabId = btn.dataset.tab;
-          
-          // Update active button
-          tabBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          
-          // Update active grid
-          menuGrids.forEach(grid => {
-            grid.classList.remove('active');
-            if (grid.id === tabId) {
-              grid.classList.add('active');
-            }
-          });
-        });
-      });
-    }
-
-    // ============================================
-    // MODALS
-    // ============================================
-    function initModals() {
-      const openBtns = document.querySelectorAll('.open-modal');
-      const closeBtns = document.querySelectorAll('.modal__close, .modal__overlay');
-      const modal = document.getElementById('bookingModal');
-      
-      openBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-      
-      closeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      });
-      
-      // Close on Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-    }
-
-    // ============================================
-    // FORMS
-    // ============================================
-    function initForms() {
-      const form = document.getElementById('bookingForm');
-      const phoneInput = document.getElementById('bookingPhone');
-      const dateInput = document.getElementById('bookingDate');
-      const statusEl = document.getElementById('formStatus');
-      const submitBtn = form.querySelector('button[type="submit"]');
-      
-      // Set min date to today
-      const today = new Date().toISOString().split('T')[0];
-      dateInput.setAttribute('min', today);
-      
-      // Phone mask
-      phoneInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 0 && value[0] !== '7') {
-          value = '7' + value;
-        }
-        if (value.length > 11) {
-          value = value.slice(0, 11);
-        }
-        
-        let formatted = '';
-        if (value.length > 0) {
-          formatted = '+7';
-        }
-        if (value.length > 1) {
-          formatted += ' (' + value.slice(1, 4);
-        }
-        if (value.length > 4) {
-          formatted += ') ' + value.slice(4, 7);
-        }
-        if (value.length > 7) {
-          formatted += '-' + value.slice(7, 9);
-        }
-        if (value.length > 9) {
-          formatted += '-' + value.slice(9, 11);
-        }
-        
-        e.target.value = formatted;
-      });
-      
-      // Form submission
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправляем...';
-        statusEl.className = 'form-status';
-        statusEl.textContent = '';
-        
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Success
-        statusEl.className = 'form-status success';
-        statusEl.innerHTML = '<i class="fas fa-check-circle"></i> Заявка принята! Мы свяжемся с вами в течение 15 минут.';
-        
-        showToast('Заявка успешно отправлена!', 'success');
-        
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить заявку';
-        
-        // Close modal after 2 seconds
-        setTimeout(() => {
-          document.getElementById('bookingModal').classList.remove('active');
-          document.body.style.overflow = '';
-          statusEl.className = 'form-status';
-          statusEl.textContent = '';
-        }, 2000);
-      });
-    }
-
-    // ============================================
-    // SCROLL EFFECTS
-    // ============================================
-    function initScrollEffects() {
-      // Intersection Observer for animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            
-            // Animate counters
-            if (entry.target.classList.contains('stat')) {
-              const numberEl = entry.target.querySelector('.stat__number');
-              if (numberEl) {
-                animateCounter(numberEl);
-              }
-            }
-            
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-      
-      // Observe elements
-      document.querySelectorAll('.menu-card, .cocktail-card, .wine-card, .tincture-card, .stat').forEach(el => {
-        observer.observe(el);
-      });
-    }
-
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.count);
-      const duration = 2000;
-      const step = target / (duration / 16);
-      let current = 0;
-      
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          el.textContent = target + '+';
-          clearInterval(timer);
-        } else {
-          el.textContent = Math.floor(current);
-        }
-      }, 16);
-    }
-
-    // ============================================
-    // SEARCH
-    // ============================================
-    function initSearch() {
-      const searchInput = document.getElementById('menuSearch');
-      
-      searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        
-        if (query.length === 0) {
-          // Show all items
-          document.querySelectorAll('.menu-card').forEach(card => {
-            card.style.display = '';
-          });
-          return;
-        }
-        
-        // Filter items
-        document.querySelectorAll('.menu-card').forEach(card => {
-          const title = card.querySelector('.menu-card__title').textContent.toLowerCase();
-          const desc = card.querySelector('.menu-card__desc').textContent.toLowerCase();
-          
-          if (title.includes(query) || desc.includes(query)) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    }
-
-    // ============================================
-    // CART & FAVORITES
-    // ============================================
-    function initCart() {
-      const cartBtn = document.getElementById('cartBtn');
-      
-      cartBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
-          showToast('Корзина пуста', 'error');
-        } else {
-          showToast(`В корзине ${cart.length} товаров на ${cart.reduce((sum, item) => sum + item.price, 0)} ₽`, 'success');
-        }
-      });
-    }
-
-    function addToCart(item) {
-      cart.push(item);
-      updateCartCount();
-      showToast(`${item.name} добавлен в корзину`, 'success');
-    }
-
-    function updateCartCount() {
-      const countEl = document.getElementById('cartCount');
-      countEl.textContent = cart.length;
-      
-      if (cart.length > 0) {
-        countEl.style.display = 'flex';
-      } else {
-        countEl.style.display = 'none';
-      }
-    }
-
-    function toggleFavorite(name, btn) {
-      const index = favorites.indexOf(name);
-      
-      if (index > -1) {
-        favorites.splice(index, 1);
+      // Remove active from all buttons
+      document.querySelectorAll('.section-nav__btn').forEach(btn => {
         btn.classList.remove('active');
-        btn.innerHTML = '<i class="far fa-heart"></i>';
-        showToast(`${name} удалён из избранного`, 'success');
-      } else {
-        favorites.push(name);
-        btn.classList.add('active');
-        btn.innerHTML = '<i class="fas fa-heart"></i>';
-        showToast(`${name} добавлен в избранное`, 'success');
-      }
-    }
-
-    // ============================================
-    // TOAST NOTIFICATIONS
-    // ============================================
-    function showToast(message, type = 'success') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast toast--${type}`;
-      
-      const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-      
-      toast.innerHTML = `
-        <span class="toast__icon"><i class="fas ${icon}"></i></span>
-        <span class="toast__message">${message}</span>
-      `;
-      
-      container.appendChild(toast);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        toast.classList.add('hide');
-        setTimeout(() => {
-          toast.remove();
-        }, 300);
-      }, 3000);
-    }
-
-    // ============================================
-    // SCROLL TO TOP
-    // ============================================
-    function initScrollToTop() {
-      const scrollTopBtn = document.getElementById('scrollTop');
-      
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          scrollTopBtn.classList.add('visible');
-        } else {
-          scrollTopBtn.classList.remove('visible');
-        }
       });
-      
-      scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
+
+      // Show selected section
+      document.getElementById(sectionName).classList.add('active');
+
+      // Add active to clicked button
+      event.target.closest('.section-nav__btn').classList.add('active');
+
+      // Smooth scroll to top of section
+      document.querySelector('.section-nav').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
