@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Москва-Владивосток — ресторан русской дальневосточной кухни в Санкт-Петербурге. Московский проспект, 206. Russian New Wave." />
+  <meta name="theme-color" content="#002932" />
+  <title>Москва-Владивосток | Russian New Wave</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Шапка -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">Москва—Владивосток</a>
+      <nav class="nav" id="nav">
+        <a href="#about">О ресторане</a>
+        <a href="#menu">Меню</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <button class="btn btn--primary open-modal" data-modal="booking">Забронировать стол</button>
+      <button class="burger" id="burger" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="promo">
+    <div class="hero__bg">
+      <img src="images/hero-animals.svg" alt="Конь и Тигр — символы Москвы и Владивостока" class="hero__svg" loading="lazy" />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="container hero__content">
+      <p class="hero__tagline reveal">Russian New Wave</p>
+      <h1 class="hero__title reveal">Русская кухня<br>с дальневосточным характером</h1>
+      <p class="hero__subtitle reveal">Место, где формируются новые русские традиции</p>
+      <div class="hero__actions reveal">
+        <button class="btn btn--primary open-modal" data-modal="booking">Забронировать стол</button>
+        <a href="#menu" class="btn btn--outline">Посмотреть меню</a>
+      </div>
+    </div>
+    <div class="hero__curve"></div>
+  </section>
+
+  <!-- О ресторане -->
+  <section class="about section-padding" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Легенда бренда</span>
+        <h2 class="section-title">Здесь и кони целы,<br>и тигры сыты</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <p class="about__lead">«Москва–Владивосток» — это не этно и не фьюжн. Это новая русская традиция, которая случается здесь и сейчас.</p>
+          <p>Шеф играет с техниками, продуктами и акцентами: от холодца с мороженым из хрена до ухи с вакаме, гребешка с демигласом и домашних пельменей рядом с гёдза.</p>
+          <p>Лошадь — устойчивость и традиция. Тигр — свобода и современный взгляд. Мы соединяем их не случайно. Это взгляд на Россию с дальневосточного берега — спокойный, уверенный и немного ироничный.</p>
+        </div>
+        <div class="about__visual reveal">
+          <div class="pattern-card pattern-taiga">
+            <span class="pattern-card__label">Паттерн Тайги</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Меню -->
+  <section class="menu section-padding" id="menu">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Гастрономия</span>
+        <h2 class="section-title">Наше меню</h2>
+        <p class="section-desc">Русская кухня как база. А всё, что появилось вокруг нас — переосмысляется в русском контексте.</p>
+      </div>
+
+      <div class="menu-tabs reveal">
+        <button class="tab-btn active" data-tab="kitchen">Кухня</button>
+        <button class="tab-btn" data-tab="bar">Бар</button>
+        <button class="tab-btn" data-tab="cocktails">Коктейли</button>
+        <button class="tab-btn" data-tab="wine">Вино</button>
+      </div>
+
+      <div class="menu-content reveal">
+        <!-- КУХНЯ -->
+        <div class="menu-tab active" id="kitchen">
+          <div class="menu-category"><h3>Холодные закуски</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Тартар из филе тунца</h4><p>С чипсами из тапиоки</p></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Бычок-боровичок</h4><p>Тартар с муссом из грибов</p></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Холодец</h4><p>Из свиной рульки с муссом из хрена</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Филе сельди</h4><p>С толчёным молодым картофелем</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Телячий язык</h4><p>С муссом из хрена</p></div><span class="price">740 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Три вида сала</h4><p>С зелёным луком</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Грузди солёные</h4><p>С фермерской сметаной</p></div><span class="price">990 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Паштет из куриной печени</h4><p>С булочкой бриошь и яблочным конфи</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Домашние соленья</h4><p>Огурцы, чеснок, черемша, квашеная и грузинская капуста</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Азиатские соленья</h4><p>Древесные грибы, корейская морковь, кимчи, битые огурцы</p></div><span class="price">490 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Горячие закуски</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Креветки темпура</h4><p>С васаби-муссом</p></div><span class="price">540 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Обожженная молодая капуста</h4><p>С соусом из сыра горгонзола</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Мурманский гребешок</h4><p>С картофельным муссом</p></div><span class="price">790 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Кимчи с креветкой</h4></div><span class="price">640 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Салаты</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Оливье классический</h4><p>С докторской колбасой</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Оливье приморский</h4><p>С языком, горчичным майо и красной икрой</p></div><span class="price">790 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Рыбацкая мимоза</h4><p>С треской и икрой из водорослей</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Хрустящие баклажаны</h4><p>С кремом из феты и спелыми томатами</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Владивосток-Токпо</h4><p>С чёрной треской</p></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Салат с тунцом и крабом</h4><p>С острова Русский</p></div><span class="price">1 290 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Океанический салат</h4><p>Из трёх видов водорослей с сельдереем и огурцом</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Овощной салат</h4><p>Из огурцов, азербайджанских томатов и зелени</p></div><span class="price">610 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Супы</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Борщ по-московски</h4><p>Со смальцем</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Щи</h4><p>С печёным картофелем и жареной свиной грудинкой</p></div><span class="price">590 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Морская уха</h4><p>С вакаме</p></div><span class="price">990 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Русский суп</h4><p>Из белых грибов</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Пряный суп</h4><p>С крабом и креветками</p></div><span class="price">990 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Рыба и Морепродукты</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Красная рыба</h4><p>На углях</p></div><span class="price">1 670 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Кальмар</h4><p>На углях</p></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Красная креветка</h4><p>На углях</p></div><span class="price">990 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Мясо</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Говядина по-строгановски</h4><p>С маринованными огурцами</p></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Томлёная ножка кролика</h4><p>С полбой и соусом из чернослива</p></div><span class="price">1 340 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Азиатский шницель</h4><p>Из куриной грудки с битыми огурцами</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Печёные голубцы</h4><p>С копчёной сметаной</p></div><span class="price">780 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Овощи на огне</h4></div><span class="price">640 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Гарниры</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Гречка с луком</h4></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Картофельное пюре</h4></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Картофель фри</h4></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Печёный картофель</h4><p>С сыром и боровиками</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Печёный картофель</h4><p>Со сметаной и красной икрой</p></div><span class="price">890 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Пельмени / Вареники / Гёдза</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Пельмени домашние</h4></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Вареники сытные</h4><p>С картошкой и беконом</p></div><span class="price">590 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Гёдза</h4><p>Со свининой и креветкой</p></div><span class="price">790 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Десерты</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Шарлотка</h4><p>С мороженым из сливочного печенья</p></div><span class="price">540 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Глазированный сырок</h4><p>С вареньем из чёрной смородины</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Шоколадный мункейк</h4><p>Со сливочным кремом</p></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Сибирские вареники</h4><p>С чёрной смородиной</p></div><span class="price">490 ₽</span></div>
+          </div>
+        </div>
+
+        <!-- БАР -->
+        <div class="menu-tab" id="bar">
+          <div class="menu-category"><h3>Домашние настойки (40мл)</h3><p class="menu-subtitle">Россия в бокале: настойки из 10 регионов</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Башкирская</h4><p>Медовая с перцем</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Карельская</h4><p>Морошка и черника на бородинском хлебе</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Уральская</h4><p>Черноплодка, чёрная смородина</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Бородинская</h4><p>С кориандром и чесноком</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Сибирская</h4><p>Брусника, кедровый орех и пихта</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Ростовская</h4><p>Хреновуха с медом и укропом</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Алтайская</h4><p>Травяной сбор с калиной</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Сочинская</h4><p>Лимон, апельсин и грейпфрут</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Дальневосточная</h4><p>Облепиха с розмарином и лимоном</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Среднерусская</h4><p>Яблоко, вишня и кориандр</p></div><span class="price">390 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Водка (40мл)</h3>
+            <p class="menu-subtitle">Русская</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Polba</h4></div><span class="price">340 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Spelta</h4></div><span class="price">520 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Samogray Craft Birch</h4></div><span class="price">340 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Чистые росы</h4></div><span class="price">470 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Онегин</h4></div><span class="price">360 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Lab 40</h4></div><span class="price">340 ₽</span></div>
+            <p class="menu-subtitle">Импортная</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Danzka</h4></div><span class="price">380 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Koskenkorva</h4></div><span class="price">410 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Grey Goose</h4></div><span class="price">570 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Виски (40мл)</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Chivas Regal 12 y.o.</h4></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Jameson</h4></div><span class="price">510 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Bushmills</h4></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Singleton 12 y.o.</h4></div><span class="price">890 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Bulleit Bourbon</h4></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Jack Daniels</h4></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Lagavulin 8 y.o.</h4></div><span class="price">1 290 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Джин / Ром / Текила (40мл)</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Gunpowder (Джин)</h4></div><span class="price">670 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Double 9 Blanco / Anejo (Ром)</h4></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Takamaka Spiced (Ром)</h4></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Jose Cuervo Silver / Reposado (Текила)</h4></div><span class="price">390 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Ликёры / Коньяк / Бренди (40мл)</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Amaro Montenegro</h4></div><span class="price">490 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Fernet Branca</h4></div><span class="price">380 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Jägermeister</h4></div><span class="price">440 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Roulette VS / VSOP</h4></div><span class="price">590 / 680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Pere Magloire VS / VSOP</h4></div><span class="price">560 / 640 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Пиво</h3>
+            <p class="menu-subtitle">Разливное (250мл / 400мл)</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Лагер / Смар</h4></div><span class="price">390 / 570 ₽</span></div>
+            <p class="menu-subtitle">Бутылочное</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Стаут / Фруктовое / Пшеничное</h4></div><span class="price">620 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Пиво Б/А</h4></div><span class="price">540 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Безалкогольные и Горячие</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Вода Маруха (330мл)</h4><p>Газ / Негаз</p></div><span class="price">330 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Лимонады Бакуми (200мл)</h4><p>Кола, Маракуйя, Груша</p></div><span class="price">390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Морс / Взвар / Квас</h4></div><span class="price">240–390 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Эспрессо / Американо</h4></div><span class="price">260 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Капучино</h4></div><span class="price">360 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Флэт уайт / Латте / Раф</h4></div><span class="price">380 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Авторский чай (600мл)</h4><p>Облепиховый, Ягодный, Малиновый</p></div><span class="price">530 ₽</span></div>
+          </div>
+        </div>
+
+        <!-- КОКТЕЙЛИ -->
+        <div class="menu-tab" id="cocktails">
+          <div class="menu-category"><h3>Авторские коктейли от Ивана Гринько</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Приморский мул</h4><p>Водка на вяленом манго, маракуйя, юдзу, лист лайма, имбирный эль</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Красная Москва</h4><p>Розовый джин на малине, сухой вермут, кардинал из свёклы, лимон, белок</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Садовый тики</h4><p>Светлый ром, апельсиновый ликёр, крыжовник, огурец, лайм</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Мандариновый мерзавчик</h4><p>Грушевая водка, сухой вермут, мандарин, бузина</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Кофейный варенец</h4><p>Ванильная водка, кофейный ликёр, Амаретто, пена из ряженки</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Клюквенное поле</h4><p>Клюквенная водка, клюква, иван-чай</p></div><span class="price">640 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Саянский хайбол</h4><p>Джин, жимолость, черника, чабрец</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Тульский пряник</h4><p>Джин, херес, бергамот, имбирный пряник</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Станичный</h4><p>Груша, айва, дыня, зелёное яблоко, лимонник</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Морошковый сауэр</h4><p>Пряный ром, ликёр морошки</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Таёжный негрони</h4><p>Джин на бруснике и саган-дайля, вермут, кампари</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Земляничный спритц</h4><p>Апероль, земляника, игристое</p></div><span class="price">790 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Да́чная маргарита</h4><p>Текила, крыжовник</p></div><span class="price">680 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Старомодный</h4><p>Бурбон, шоколад, травы, солёная карамель, имбирный пряник</p></div><span class="price">710 ₽</span></div>
+          </div>
+        </div>
+
+        <!-- ВИНО -->
+        <div class="menu-tab" id="wine">
+          <div class="menu-category"><h3>Игристое 750мл</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Rosé Brut, Cuvée Jean-Louis</h4><p>Бургундия, Франция. Клубника, малина и лёгкая сливочность.</p></div><span class="price">4 900 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Магнатум Блан де Блан, Лефкадия</h4><p>Кубань, Россия. Яблоко, бриошь и свежесть.</p></div><span class="price">5 100 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Crémant d’Alsace Brut Rosé, Bestheim</h4><p>Эльзас, Франция. Красные ягоды, цитрус и изящные пузырьки.</p></div><span class="price">6 900 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Шампанское 750мл</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Lassalle et Fils Brut</h4><p>Ручной ремюаж, 4 года выдержки. Цветы, цитрусы.</p></div><span class="price">12 400 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Carte Blanche, Bernard Remy</h4><p>Липа, мёд, лимон.</p></div><span class="price">14 400 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Laurent-Perrier Brut</h4><p>Свежесть, цитрусы, белые цветы.</p></div><span class="price">51 400 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Ruinart Rosé Brut</h4><p>Малина, клубника, грейпфрут, пряность.</p></div><span class="price">55 000 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Белое вино 750мл</h3>
+            <p class="menu-subtitle">Россия</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Дуванкой, Репин Олег</h4><p>Крым. Цитрус, зелёное яблоко и минеральная свежесть.</p></div><span class="price">9 900 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Шардоне, Рем Акчурин</h4><p>Крым. Яблоко, дыня и лёгкие травяные ноты.</p></div><span class="price">4 900 ₽</span></div>
+            <p class="menu-subtitle">Франция</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Sancerre, La Clef du Recit</h4><p>Долина Луары. Персик, яблоко, груша.</p></div><span class="price">11 900 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Chablis, Domaine des Hâtes</h4><p>Бургундия. Зелёное яблоко, лимон и белые цветы.</p></div><span class="price">12 400 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Красное вино 750мл</h3>
+            <p class="menu-subtitle">Россия</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Каберне Фран, Николаев и сыновья</h4><p>Кубань. Ноты чёрного перца и лесных ягод.</p></div><span class="price">7 400 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Сира, Репин Олег</h4><p>Крым. Черника, ежевика, фруктовый джем и специи.</p></div><span class="price">12 900 ₽</span></div>
+            <p class="menu-subtitle">Италия</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Chianti Classico, Vallepicciola</h4><p>Тоскана. Вишня, специи, лёгкий табак.</p></div><span class="price">9 400 ₽</span></div>
+            <p class="menu-subtitle">Франция</p>
+            <div class="menu-item"><div class="menu-item__info"><h4>Saint-Émilion Grand Cru, Château Tour Saint-Pierre</h4><p>Бордо. Кассис, слива и благородный дуб.</p></div><span class="price">11 400 ₽</span></div>
+          </div>
+          <div class="menu-category"><h3>Вино по бокалам 125мл</h3>
+            <div class="menu-item"><div class="menu-item__info"><h4>Crémant de Limoux “Eugenie”</h4><p>Игристое, Франция</p></div><span class="price">940 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Prosecco Spumante</h4><p>Игристое, Италия</p></div><span class="price">740 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Шардоне, Альма Вэлли</h4><p>Белое, Крым</p></div><span class="price">690 ₽</span></div>
+            <div class="menu-item"><div class="menu-item__info"><h4>Пино Менье Кюве №2, Олег Репин</h4><p>Красное, Крым</p></div><span class="price">690 ₽</span></div>
+          </div>
+          <p class="menu-note">Винтажи могут отличаться. Полная винная карта доступна у официанта.</p>
+        </div>
+      </div>
+      
+      <div class="menu__footer reveal">
+        <a href="#" class="btn btn--outline">Скачать полное меню (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Разделитель -->
+  <div class="divider divider--sea">
+    <img src="images/pattern-sea.jpg" alt="Паттерн Моря" loading="lazy" />
+  </div>
+
+  <!-- Контакты -->
+  <section class="contacts section-padding" id="contacts">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Контакты</span>
+        <h2 class="section-title">Приходите в гости</h2>
+      </div>
+      <div class="contacts__grid reveal">
+        <div class="contacts__info">
+          <div class="contact-item"><h4>Адрес</h4><p>Санкт-Петербург,<br>Московский проспект, 206</p></div>
+          <div class="contact-item"><h4>Телефон</h4><p><a href="tel:+74231234567">+7 (423) 123-45-67</a></p></div>
+          <div class="contact-item"><h4>Режим работы</h4><p>Пн–Чт: 12:00 – 23:00<br>Пт–Сб: 12:00 – 00:00<br>Вс: 12:00 – 22:00</p></div>
+          <div class="contact-item"><h4>Email</h4><p><a href="mailto:hello@msk-vldvstk.ru">hello@msk-vldvstk.ru</a></p></div>
+        </div>
+        <div class="contacts__map">
+          <div class="map-placeholder">Яндекс.Карта</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <p class="logo">Москва—Владивосток</p>
+          <p>Ресторан русской дальневосточной кухни</p>
+        </div>
+        <div class="footer__links">
+          <a href="#">Instagram</a>
+          <a href="#">Telegram</a>
+          <a href="#">VK</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Москва-Владивосток. Made by beam team.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно -->
+  <div class="modal" id="booking-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__overlay close-modal"></div>
+    <div class="modal__content">
+      <button class="modal__close close-modal" aria-label="Закрыть">&times;</button>
+      <h3 id="modal-title">Забронировать стол</h3>
+      <p class="modal__desc">Оставьте заявку, и мы подтвердим бронь в течение 15 минут.</p>
+      <form id="bookingForm" class="booking-form">
+        <label class="form-group"><span>Имя *</span><input type="text" name="name" placeholder="Ваше имя" required /></label>
+        <label class="form-group"><span>Телефон *</span><input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required /></label>
+        <div class="form-row">
+          <label class="form-group"><span>Дата *</span><input type="date" name="date" required /></label>
+          <label class="form-group"><span>Время *</span><input type="time" name="time" required /></label>
+        </div>
+        <label class="form-group"><span>Гостей</span><select name="guests"><option>1 гость</option><option selected>2 гостя</option><option>3 гостя</option><option>4 гостя</option><option>5+ гостей</option></select></label>
+        <label class="form-group"><span>Комментарий</span><textarea name="comment" rows="3" placeholder="Особые пожелания..."></textarea></label>
+        <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+      </form>
+      <div class="form-status" id="formStatus"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

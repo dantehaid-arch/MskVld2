@@ -1,0 +1,40 @@
+/* ============================================
+   МОСКВА-ВЛАДИВОСТОК | Single Font System (TTF)
+   ============================================ */
+
+/* Подключаем ТОЛЬКО TT Bluescreens в формате TTF */
+@font-face {
+  font-family: 'TT Bluescreens';
+  src: url('../fonts/TTBluescreens-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Bluescreens';
+  src: url('../fonts/TTBluescreens-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Bluescreens';
+  src: url('../fonts/TTBluescreens-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Bluescreens';
+  src: url('../fonts/TTBluescreens-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Дальше код style.css остается прежним... */
+:root {
+  /* ... */
